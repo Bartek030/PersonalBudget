@@ -8,6 +8,10 @@ bool PersonalBudget::isUserLoggedIn() {
     return userPanel.isUserLoggedIn(userPanel.getLoggedInUserId());
 }
 
+void PersonalBudget::userLogging() {
+    userPanel.userLogging();
+}
+
 char PersonalBudget::chooseOptionFromUserMenu() {
     char choice;
 

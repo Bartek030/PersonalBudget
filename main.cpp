@@ -15,7 +15,7 @@ int main() {
                 userPersonalBudget.userRegister();
                 break;
             case '2':
-                //userPersonalBudget.userLogging();
+                userPersonalBudget.userLogging();
                 break;
             case '0':
                 exit(0);

@@ -88,3 +88,33 @@ bool UserPanel::isUserLoggedIn(int userId) {
 int UserPanel::getLoggedInUserId() {
     return loggedInUserId;
 }
+
+void UserPanel::userLogging() {
+    string login = "", password = "";
+
+    cout << endl << "Podaj login: ";
+    login = AuxiliaryMethods::loadLineFromUser();
+
+    for (int i = 0; i < users.size(); i++) {
+        if (users[i].getLogin() == login) {
+            for (int numberOfAttempts = 3; numberOfAttempts > 0; numberOfAttempts--) {
+                cout << "Podaj haslo. Pozostalo prob: " << numberOfAttempts << ": ";
+                password = AuxiliaryMethods::loadLineFromUser();
+
+                if (users[i].getPassword() == password) {
+                    cout << endl << "Zalogowales sie." << endl << endl;
+                    system("pause");
+                    loggedInUserId = users[i].getUserId();
+                    return;
+                }
+            }
+            cout << "Wprowadzono 3 razy bledne haslo." << endl;
+            system("pause");
+            return;
+        }
+    }
+    cout << "Nie ma uzytkownika z takim loginem" << endl << endl;
+    system("pause");
+    return;
+
+}

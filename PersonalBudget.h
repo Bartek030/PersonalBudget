@@ -15,6 +15,7 @@ public:
 
     void userRegister();
     bool isUserLoggedIn();
+    void userLogging();
     char chooseOptionFromUserMenu();
 };
 
