@@ -8,9 +8,9 @@
     return str;
 }*/
 
-/*int MetodyPomocnicze::konwersjaStringNaInt(string liczba) {
-    return atoi(liczba.c_str());
-}*/
+int AuxiliaryMethods::convertStringIntoInt(string number) {
+    return atoi(number.c_str());
+}
 
 string AuxiliaryMethods::loadLineFromUser() {
     string inputFromUser = "";

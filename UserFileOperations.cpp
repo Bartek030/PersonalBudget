@@ -1,17 +1,32 @@
 #include "UserFileOperations.h"
 
-vector<User> loadUsersFromFile() {
+vector<User> UserFileOperations::loadUsersFromFile() {
     vector<User> users;
     User user;
     CMarkup xmlFile;
 
     bool fileExists = xmlFile.Load("users.xml");
 
-    if (fileExists){
-
+    if (fileExists) {
+        xmlFile.FindElem();
+        xmlFile.IntoElem();
+        while(xmlFile.FindElem("User")) {
+            xmlFile.FindChildElem("ID_uzytkownika");
+            user.setUserId(AuxiliaryMethods::convertStringIntoInt(xmlFile.GetChildData()));
+            xmlFile.FindChildElem("Imie");
+            user.setName(xmlFile.GetChildData());
+            xmlFile.FindChildElem("Nazwisko");
+            user.setSurname(xmlFile.GetChildData());
+            xmlFile.FindChildElem("Login");
+            user.setLogin(xmlFile.GetChildData());
+            xmlFile.FindChildElem("Haslo");
+            user.setPassword(xmlFile.GetChildData());
+            users.push_back(user);
+        }
     } else {
         return users;
     }
+    return users;
 }
 
 void UserFileOperations::appendUserToFile(User user) {

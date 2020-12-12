@@ -10,7 +10,7 @@ class AuxiliaryMethods {
 
 public:
     //static string konwerjsaIntNaString(int liczba);
-    //static int konwersjaStringNaInt(string liczba);
+    static int convertStringIntoInt(string number);
     static string loadLineFromUser();
     static char loadCharacter();
     //static string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);
