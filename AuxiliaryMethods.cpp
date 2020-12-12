@@ -38,13 +38,13 @@ char AuxiliaryMethods::loadCharacter() {
     return singleCharacter;
 }
 
-/*string MetodyPomocnicze::zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst) {
-    if (!tekst.empty()) {
-        transform(tekst.begin(), tekst.end(), tekst.begin(), ::tolower);
-        tekst[0] = toupper(tekst[0]);
+string AuxiliaryMethods::changeFirstLetterToUpperAndRestToLower(string text) {
+    if (!text.empty()) {
+        transform(text.begin(), text.end(), text.begin(), ::tolower);
+        text[0] = toupper(text[0]);
     }
-    return tekst;
-}*/
+    return text;
+}
 
 /*int MetodyPomocnicze::podajIdWybranegoAdresata() {
     int idWybranegoAdresata = 0;

@@ -17,6 +17,7 @@ class UserPanel {
     User enterNewUserData();
     int getNewUserId();
     bool isLoginExist(string login);
+    bool isPasswordStrongEnough(string password);
 
 public:
     UserPanel() {

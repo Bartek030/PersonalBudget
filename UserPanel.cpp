@@ -16,10 +16,10 @@ User UserPanel::enterNewUserData() {
 
     user.setUserId(getNewUserId());
     cout << "Podaj imie: ";
-    name = AuxiliaryMethods::loadLineFromUser();
+    name = AuxiliaryMethods::changeFirstLetterToUpperAndRestToLower(AuxiliaryMethods::loadLineFromUser());
     user.setName(name);
     cout << "Podaj nazwisko: ";
-    surname = AuxiliaryMethods::loadLineFromUser();
+    surname = AuxiliaryMethods::changeFirstLetterToUpperAndRestToLower(AuxiliaryMethods::loadLineFromUser());
     user.setSurname(surname);
 
     do {
@@ -28,10 +28,11 @@ User UserPanel::enterNewUserData() {
         user.setLogin(login);
     } while (isLoginExist(user.getLogin()) == true);
 
-    cout << "Podaj haslo: ";
-    password = AuxiliaryMethods::loadLineFromUser();
-    user.setPassword(password);
-
+    do {
+        cout << "Podaj haslo: ";
+        password = AuxiliaryMethods::loadLineFromUser();
+        user.setPassword(password);
+    } while (!isPasswordStrongEnough(user.getPassword()) == true);
     return user;
 }
 
@@ -50,6 +51,30 @@ bool UserPanel::isLoginExist(string login) {
         }
     }
     return false;
+}
+
+bool UserPanel::isPasswordStrongEnough(string password) {
+    bool isAtleastOneUpperLetter = false;
+    bool isAtleastOneDigit = false;
+    bool isAtleastEightCharacters = false;
+
+    if (password.length() >= 8) {
+        isAtleastEightCharacters = true;
+    }
+    for (int i = 0; i < password.length(); i++) {
+        if (password[i] >= 'A' && password[i] <= 'Z') {
+            isAtleastOneUpperLetter = true;
+        }
+        if (password[i] >= '0' && password[i] <= '9') {
+            isAtleastOneDigit = true;
+        }
+    }
+    if (isAtleastOneUpperLetter && isAtleastOneDigit && isAtleastEightCharacters) {
+        return true;
+    } else {
+        cout << endl << "Podane haslo nie jest wystarczajaco silne." << endl;
+        return false;
+    }
 }
 
 bool UserPanel::isUserLoggedIn(int userId) {

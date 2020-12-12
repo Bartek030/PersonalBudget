@@ -13,7 +13,7 @@ public:
     static int convertStringIntoInt(string number);
     static string loadLineFromUser();
     static char loadCharacter();
-    //static string zamienPierwszaLitereNaDuzaAPozostaleNaMale(string tekst);
+    static string changeFirstLetterToUpperAndRestToLower(string text);
     //static int podajIdWybranegoAdresata();
     //static int wczytajLiczbeCalkowita();
 };
