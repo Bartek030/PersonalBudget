@@ -4,7 +4,7 @@ void UserPanel::userRegister() {
     User user = enterNewUserData();
 
     users.push_back(user);
-    //plikZUzytkownikami.dopiszUzytkownikaDoPliku(uzytkownik);
+    fileWithUsers.appendUserToFile(user);
 
     cout << endl << "Konto zalozono pomyslnie" << endl << endl;
     system("pause");
@@ -20,7 +20,7 @@ User UserPanel::enterNewUserData() {
     user.setName(name);
     cout << "Podaj nazwisko: ";
     surname = AuxiliaryMethods::loadLineFromUser();
-    user.setName(surname);
+    user.setSurname(surname);
 
     do {
         cout << "Podaj login: ";
@@ -48,8 +48,8 @@ bool UserPanel::isLoginExist(string login) {
             cout << endl << "Istnieje uzytkownik o takim loginie." << endl;
             return true;
         }
-        return false;
     }
+    return false;
 }
 
 bool UserPanel::isUserLoggedIn(int userId) {

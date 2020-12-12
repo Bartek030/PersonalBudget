@@ -4,12 +4,14 @@
 #include <iostream>
 #include <vector>
 #include "User.h"
+#include "UserFileOperations.h"
 #include "AuxiliaryMethods.h"
 
 using namespace std;
 
 class UserPanel {
     vector<User> users;
+    UserFileOperations fileWithUsers;
     int loggedInUserId;
 
     User enterNewUserData();
@@ -18,6 +20,7 @@ class UserPanel {
 
 public:
     UserPanel() {
+        users = fileWithUsers.loadUsersFromFile();
         loggedInUserId = 0;
     }
 

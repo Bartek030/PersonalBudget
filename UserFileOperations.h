@@ -4,6 +4,7 @@
 #include <iostream>
 #include <vector>
 #include "User.h"
+#include "Markup.h"
 
 using namespace std;
 
@@ -12,7 +13,7 @@ class UserFileOperations {
 public:
     UserFileOperations() {}
 
-    void appendUserToFile();
+    void appendUserToFile(User user);
     vector<User> loadUsersFromFile();
 };
 
