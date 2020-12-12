@@ -9,16 +9,15 @@ int main() {
 
     while (true) {
         if (userPersonalBudget.isUserLoggedIn() == false) {
-            //userChoice = userPersonalBudget.chooseOptionFromUserMenu();
-
+            userChoice = userPersonalBudget.chooseOptionFromUserMenu();
             switch (userChoice) {
             case '1':
-                //userPersonalBudget.userRegister();
+                userPersonalBudget.userRegister();
                 break;
             case '2':
                 //userPersonalBudget.userLogging();
                 break;
-            case '9':
+            case '0':
                 exit(0);
                 break;
             default:

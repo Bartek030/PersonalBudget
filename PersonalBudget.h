@@ -13,7 +13,9 @@ public:
     PersonalBudget() {}
     ~PersonalBudget() {}
 
+    void userRegister();
     bool isUserLoggedIn();
+    char chooseOptionFromUserMenu();
 };
 
 #endif // PERSONALBUDGET_H
