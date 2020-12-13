@@ -5,11 +5,12 @@
 #include <vector>
 #include "User.h"
 #include "Markup.h"
+#include "File.h"
 #include "AuxiliaryMethods.h"
 
 using namespace std;
 
-class UserFileOperations {
+class UserFileOperations : public File {
     const string PARENT_NAME;
     const string CHILD_ID;
     const string CHILD_NAME;
@@ -19,7 +20,7 @@ class UserFileOperations {
     const string XML_FILE_VERSION;
 
 public:
-    UserFileOperations() :  PARENT_NAME("User"), CHILD_ID("ID_uzytkownika"), CHILD_NAME("Imie"), CHILD_SURNAME("Nazwisko"),
+    UserFileOperations(string nameOfUsersFile) : File(nameOfUsersFile), PARENT_NAME("User"), CHILD_ID("ID_uzytkownika"), CHILD_NAME("Imie"), CHILD_SURNAME("Nazwisko"),
                             CHILD_LOGIN("Login"), CHILD_PASSWORD("Haslo"), XML_FILE_VERSION("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n"){}
 
     vector<User> loadUsersFromFile();

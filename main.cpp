@@ -4,7 +4,7 @@
 using namespace std;
 
 int main() {
-    PersonalBudget userPersonalBudget;
+    PersonalBudget userPersonalBudget("users.xml");
     char userChoice;
 
     while (true) {

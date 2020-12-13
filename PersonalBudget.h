@@ -10,7 +10,7 @@ class PersonalBudget {
     UserPanel userPanel;
 
 public:
-    PersonalBudget() {}
+    PersonalBudget(string nameOfUsersFile) : userPanel(nameOfUsersFile) {}
     ~PersonalBudget() {}
 
     void userRegister();

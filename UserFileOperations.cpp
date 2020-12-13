@@ -5,7 +5,7 @@ vector<User> UserFileOperations::loadUsersFromFile() {
     User user;
     CMarkup xmlFile;
 
-    bool fileExists = xmlFile.Load("users.xml");
+    bool fileExists = xmlFile.Load(getFileName());
 
     if (fileExists) {
         xmlFile.FindElem();
@@ -32,7 +32,7 @@ vector<User> UserFileOperations::loadUsersFromFile() {
 void UserFileOperations::appendUserToFile(User user) {
     CMarkup xmlFile;
 
-    bool fileExists = xmlFile.Load("users.xml");
+    bool fileExists = xmlFile.Load(getFileName());
 
     if(!fileExists) {
         xmlFile.SetDoc(XML_FILE_VERSION);
@@ -48,13 +48,13 @@ void UserFileOperations::appendUserToFile(User user) {
     xmlFile.AddElem(CHILD_LOGIN, user.getLogin());
     xmlFile.AddElem(CHILD_PASSWORD, user.getPassword());
 
-    xmlFile.Save("users.xml");
+    xmlFile.Save(getFileName());
 }
 
 void UserFileOperations::changeLoggedInUserPasswordInFile(string newPassword, int loggedInUserId) {
     CMarkup xmlFile;
 
-    bool fileExists = xmlFile.Load("users.xml");
+    bool fileExists = xmlFile.Load(getFileName());
 
     if(fileExists) {
         xmlFile.FindElem();
@@ -70,5 +70,5 @@ void UserFileOperations::changeLoggedInUserPasswordInFile(string newPassword, in
         cout << "Nie udalo sie zmienic hasla w pliku. Plik nie istnieje!" << endl;
         system("pause");
     }
-    xmlFile.Save("users.xml");
+    xmlFile.Save(getFileName());
 }

@@ -20,7 +20,7 @@ class UserPanel {
     bool isPasswordStrongEnough(string password);
 
 public:
-    UserPanel() {
+    UserPanel(string nameOfUsersFile) : fileWithUsers(nameOfUsersFile) {
         users = fileWithUsers.loadUsersFromFile();
         loggedInUserId = 0;
     }
