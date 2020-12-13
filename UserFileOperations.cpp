@@ -10,16 +10,16 @@ vector<User> UserFileOperations::loadUsersFromFile() {
     if (fileExists) {
         xmlFile.FindElem();
         xmlFile.IntoElem();
-        while(xmlFile.FindElem("User")) {
-            xmlFile.FindChildElem("ID_uzytkownika");
+        while(xmlFile.FindElem(PARENT_NAME)) {
+            xmlFile.FindChildElem(CHILD_ID);
             user.setUserId(AuxiliaryMethods::convertStringIntoInt(xmlFile.GetChildData()));
-            xmlFile.FindChildElem("Imie");
+            xmlFile.FindChildElem(CHILD_NAME);
             user.setName(xmlFile.GetChildData());
-            xmlFile.FindChildElem("Nazwisko");
+            xmlFile.FindChildElem(CHILD_SURNAME);
             user.setSurname(xmlFile.GetChildData());
-            xmlFile.FindChildElem("Login");
+            xmlFile.FindChildElem(CHILD_LOGIN);
             user.setLogin(xmlFile.GetChildData());
-            xmlFile.FindChildElem("Haslo");
+            xmlFile.FindChildElem(CHILD_PASSWORD);
             user.setPassword(xmlFile.GetChildData());
             users.push_back(user);
         }
@@ -35,19 +35,40 @@ void UserFileOperations::appendUserToFile(User user) {
     bool fileExists = xmlFile.Load("users.xml");
 
     if(!fileExists) {
-        xmlFile.SetDoc("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n");
+        xmlFile.SetDoc(XML_FILE_VERSION);
         xmlFile.AddElem("Users");
     }
     xmlFile.FindElem();
     xmlFile.IntoElem();
-    xmlFile.AddElem("User");
+    xmlFile.AddElem(PARENT_NAME);
     xmlFile.IntoElem();
-    xmlFile.AddElem("ID_uzytkownika", user.getUserId());
-    xmlFile.AddElem("Imie", user.getName());
-    xmlFile.AddElem("Nazwisko", user.getSurname());
-    xmlFile.AddElem("Login", user.getLogin());
-    xmlFile.AddElem("Haslo", user.getPassword());
+    xmlFile.AddElem(CHILD_ID, user.getUserId());
+    xmlFile.AddElem(CHILD_NAME, user.getName());
+    xmlFile.AddElem(CHILD_SURNAME, user.getSurname());
+    xmlFile.AddElem(CHILD_LOGIN, user.getLogin());
+    xmlFile.AddElem(CHILD_PASSWORD, user.getPassword());
 
     xmlFile.Save("users.xml");
 }
 
+void UserFileOperations::changeLoggedInUserPasswordInFile(string newPassword, int loggedInUserId) {
+    CMarkup xmlFile;
+
+    bool fileExists = xmlFile.Load("users.xml");
+
+    if(fileExists) {
+        xmlFile.FindElem();
+        xmlFile.IntoElem();
+        while(xmlFile.FindElem(PARENT_NAME)) {
+            xmlFile.FindChildElem(CHILD_ID);
+            if(AuxiliaryMethods::convertStringIntoInt(xmlFile.GetChildData()) == loggedInUserId) {
+                xmlFile.FindChildElem(CHILD_PASSWORD);
+                xmlFile.SetChildData(newPassword);
+            }
+        }
+    } else {
+        cout << "Nie udalo sie zmienic hasla w pliku. Plik nie istnieje!" << endl;
+        system("pause");
+    }
+    xmlFile.Save("users.xml");
+}

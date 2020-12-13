@@ -12,6 +12,10 @@ void PersonalBudget::userLogging() {
     userPanel.userLogging();
 }
 
+void PersonalBudget::loggedInUserPasswordChange() {
+    userPanel.loggedInUserPasswordChange(userPanel.getLoggedInUserId());
+}
+
 void PersonalBudget::userLoggingOut() {
     userPanel.userLoggingOut();
 }

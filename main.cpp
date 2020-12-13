@@ -45,7 +45,7 @@ int main() {
                 //userPersonalBudget.displayFinancialStatmentFromSelectedPeriodOfTime();
                 break;
             case '9':
-                //userPersonalBudget.loggedInUserPasswordChange();
+                userPersonalBudget.loggedInUserPasswordChange();
                 break;
             case '0':
                 userPersonalBudget.userLoggingOut();

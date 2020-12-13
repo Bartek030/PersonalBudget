@@ -115,6 +115,26 @@ void UserPanel::userLogging() {
 
 }
 
+void UserPanel::loggedInUserPasswordChange(int loggedInUserId) {
+    string newPassword = "";
+
+    do {
+    cout << "Podaj nowe haslo: ";
+    newPassword = AuxiliaryMethods::loadLineFromUser();
+    } while(!isPasswordStrongEnough(newPassword));
+
+    for (int i = 0; i < users.size(); i++)
+    {
+        if (users[i].getUserId() == loggedInUserId)
+        {
+            users[i].setPassword(newPassword);
+            cout << "Haslo zostalo zmienione." << endl << endl;
+            system("pause");
+        }
+    }
+    fileWithUsers.changeLoggedInUserPasswordInFile(newPassword, loggedInUserId);
+}
+
 void UserPanel::userLoggingOut() {
     loggedInUserId = 0;
     cout << endl << "Wylogowales sie." << endl;

@@ -10,18 +10,21 @@
 using namespace std;
 
 class UserFileOperations {
-    const string parentName;
-    const string childId;
-    const string childName;
-    const string childSurname;
-    const string childLogin;
-    const string childPassword;
+    const string PARENT_NAME;
+    const string CHILD_ID;
+    const string CHILD_NAME;
+    const string CHILD_SURNAME;
+    const string CHILD_LOGIN;
+    const string CHILD_PASSWORD;
+    const string XML_FILE_VERSION;
 
 public:
-    UserFileOperations() : parentName("User"), childId("ID_uzytkownika"), childName("Imie"), childSurname("Nazwisko"), childLogin("Login"), childPassword("Haslo"){}
+    UserFileOperations() :  PARENT_NAME("User"), CHILD_ID("ID_uzytkownika"), CHILD_NAME("Imie"), CHILD_SURNAME("Nazwisko"),
+                            CHILD_LOGIN("Login"), CHILD_PASSWORD("Haslo"), XML_FILE_VERSION("<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n"){}
 
     vector<User> loadUsersFromFile();
     void appendUserToFile(User user);
+    void changeLoggedInUserPasswordInFile(string newPassword, int loggedInUserId);
 };
 
 #endif // USERFILEOPERATIONS_H
