@@ -16,7 +16,9 @@ public:
     void userRegister();
     bool isUserLoggedIn();
     void userLogging();
+    void userLoggingOut();
     char chooseOptionFromUserMenu();
+    char chooseOptionFromOperationMenu();
 };
 
 #endif // PERSONALBUDGET_H

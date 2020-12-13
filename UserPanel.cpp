@@ -85,10 +85,6 @@ bool UserPanel::isUserLoggedIn(int userId) {
     }
 }
 
-int UserPanel::getLoggedInUserId() {
-    return loggedInUserId;
-}
-
 void UserPanel::userLogging() {
     string login = "", password = "";
 
@@ -102,7 +98,7 @@ void UserPanel::userLogging() {
                 password = AuxiliaryMethods::loadLineFromUser();
 
                 if (users[i].getPassword() == password) {
-                    cout << endl << "Zalogowales sie." << endl << endl;
+                    cout << endl << "Zalogowales sie. Witaj " << users[i].getName() << " ! Milo Cie widziec! :-)" << endl << endl;
                     system("pause");
                     loggedInUserId = users[i].getUserId();
                     return;
@@ -117,4 +113,14 @@ void UserPanel::userLogging() {
     system("pause");
     return;
 
+}
+
+void UserPanel::userLoggingOut() {
+    loggedInUserId = 0;
+    cout << endl << "Wylogowales sie." << endl;
+    system("pause");
+}
+
+int UserPanel::getLoggedInUserId() {
+    return loggedInUserId;
 }

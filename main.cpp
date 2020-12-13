@@ -26,7 +26,7 @@ int main() {
                 break;
             }
         } else {
-            //userChoice = userPersonalBudget.chooseOptionFromOperationMenu();
+            userChoice = userPersonalBudget.chooseOptionFromOperationMenu();
 
             switch (userChoice) {
             case '1':
@@ -48,7 +48,7 @@ int main() {
                 //userPersonalBudget.loggedInUserPasswordChange();
                 break;
             case '0':
-                //userPersonalBudget.userLoggingOut();
+                userPersonalBudget.userLoggingOut();
                 break;
             default:
                 cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
