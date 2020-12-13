@@ -4,21 +4,20 @@
 using namespace std;
 
 int main() {
-    PersonalBudget userPersonalBudget;
+    PersonalBudget userPersonalBudget("users.xml");
     char userChoice;
 
     while (true) {
         if (userPersonalBudget.isUserLoggedIn() == false) {
-            //userChoice = userPersonalBudget.chooseOptionFromUserMenu();
-
+            userChoice = userPersonalBudget.chooseOptionFromUserMenu();
             switch (userChoice) {
             case '1':
-                //userPersonalBudget.userRegister();
+                userPersonalBudget.userRegister();
                 break;
             case '2':
-                //userPersonalBudget.userLogging();
+                userPersonalBudget.userLogging();
                 break;
-            case '9':
+            case '0':
                 exit(0);
                 break;
             default:
@@ -27,7 +26,7 @@ int main() {
                 break;
             }
         } else {
-            //userChoice = userPersonalBudget.chooseOptionFromOperationMenu();
+            userChoice = userPersonalBudget.chooseOptionFromOperationMenu();
 
             switch (userChoice) {
             case '1':
@@ -46,10 +45,10 @@ int main() {
                 //userPersonalBudget.displayFinancialStatmentFromSelectedPeriodOfTime();
                 break;
             case '9':
-                //userPersonalBudget.loggedInUserPasswordChange();
+                userPersonalBudget.loggedInUserPasswordChange();
                 break;
             case '0':
-                //userPersonalBudget.userLoggingOut();
+                userPersonalBudget.userLoggingOut();
                 break;
             default:
                 cout << endl << "Nie ma takiej opcji w menu." << endl << endl;

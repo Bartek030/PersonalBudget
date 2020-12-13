@@ -10,10 +10,16 @@ class PersonalBudget {
     UserPanel userPanel;
 
 public:
-    PersonalBudget() {}
+    PersonalBudget(string nameOfUsersFile) : userPanel(nameOfUsersFile) {}
     ~PersonalBudget() {}
 
+    void userRegister();
     bool isUserLoggedIn();
+    void userLogging();
+    void loggedInUserPasswordChange();
+    void userLoggingOut();
+    char chooseOptionFromUserMenu();
+    char chooseOptionFromOperationMenu();
 };
 
 #endif // PERSONALBUDGET_H
