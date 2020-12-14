@@ -24,7 +24,7 @@ void PersonalBudget::userLoggingOut() {
 }
 
 void PersonalBudget::addIncome() {
-    //operationPanel.addIncome();
+    operationPanel -> addIncome();
 }
 
 char PersonalBudget::chooseOptionFromUserMenu() {

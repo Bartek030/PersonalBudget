@@ -1,19 +1,19 @@
 #include "OperationPanel.h"
 
 void OperationPanel::addIncome() {
-    /*IncomeOperationData income = enterNewIncomeData();
+    IncomeOperationData income = enterNewIncomeData();
 
-    incomes.push_back(user);
-    fileWithUsers.appendUserToFile(user);
+    incomes.push_back(income);
+    //fileWithUsers.appendUserToFile(user);
 
-    cout << endl << "Konto zalozono pomyslnie" << endl << endl;
-    system("pause");*/
+    cout << endl << "Przychod zostal dodany pomyslnie" << endl << endl;
+    system("pause");
 }
-/*
+
 IncomeOperationData OperationPanel::enterNewIncomeData() {
     IncomeOperationData newIncome;
     string incomeDescription = "";
-    string incomeAmount = "";
+    float incomeAmount;
     char userChoice;
 
     system("cls");
@@ -32,17 +32,15 @@ IncomeOperationData OperationPanel::enterNewIncomeData() {
             system("pause");
             break;
         }
-    } while();
+    } while(true);
 
     cout << "Podaj zrodlo przychodu: ";
     incomeDescription = AuxiliaryMethods::loadLineFromUser();
     newIncome.setOperationDescription(incomeDescription);
 
-    do {
-        cout << "Podaj kwote przychodu: ";
-        incomeAmount = AuxiliaryMethods::loadLineFromUser();
-        newIncome.setAmount();
-    } while ();
+    cout << "Podaj kwote przychodu: ";
+    incomeAmount = AuxiliaryMethods::loadAmountFromUser();
+    newIncome.setAmount(incomeAmount);
 
     return newIncome;
 }
@@ -69,4 +67,3 @@ char OperationPanel::chooseOptionFromIncomeMenu() {
 
     return choice;
 }
-*/
