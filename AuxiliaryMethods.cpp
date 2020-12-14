@@ -7,6 +7,13 @@ string AuxiliaryMethods::convertIntIntoString(int number) {
     return str;
 }
 
+string AuxiliaryMethods::convertFloatIntoString(float number) {
+    ostringstream ss;
+    ss << number;
+    string str = ss.str();
+    return str;
+}
+
 int AuxiliaryMethods::convertStringIntoInt(string number) {
     return atoi(number.c_str());
 }
@@ -72,8 +79,6 @@ string AuxiliaryMethods::getDateFromUser() {
         cout << "Podaj date operacji (RRRR-MM-DD): ";
         userDate = loadLineFromUser();
     } while (!isDateRangeCorrect(userDate));
-    cout << userDate;
-    system("pause");
     return userDate;
 }
 
@@ -166,14 +171,14 @@ bool AuxiliaryMethods::isDateFormatCorrect(string date) {
 }
 
 bool AuxiliaryMethods::showInfoAboutBadDateRange() {
-    cout << "Podano nieprawidlowy zakres daty!" << endl;
+    cout << endl << "Podano nieprawidlowy zakres daty!" << endl;
     cout << "Podana data musi miescic sie w przedziale od 2000-01-01 do ostatniego dnia biezacego miesiaca!" << endl << endl;
     system("pause");
     return false;
 }
 
 bool AuxiliaryMethods::showInfoAboutBadDateFormat() {
-    cout << "Podano nieprawidlowy format daty!" << endl;
+    cout << endl << "Podano nieprawidlowy format daty!" << endl;
     cout << "Date nalezy wpisac w formacie: RRRR-MM-DD" << endl;
     cout << "Data musi skladac sie z samych cyfr" << endl << endl;
     system("pause");
@@ -192,23 +197,27 @@ string AuxiliaryMethods::getOnlyDigitsFromDate(string date) {
 }
 
 float AuxiliaryMethods::loadAmountFromUser() {
-    string inputFromUser = loadLineFromUser();
+    string inputFromUser = "";
     float amount;
-
-    if(isFloatNumberCorrect(inputFromUser)) {
-        inputFromUser = replaceCommaWithDot(inputFromUser);
-        amount = atof(inputFromUser.c_str());
-        return amount;
-    } else {
-        cout << "To nie jest prawidlowa liczba! Wprowadz liczbe jeszcze raz: ";
-    }
+    bool isInputCorrect = false;
+    do {
+        inputFromUser = loadLineFromUser();
+        if(isFloatNumberCorrect(inputFromUser)) {
+            isInputCorrect = true;
+            inputFromUser = replaceCommaWithDot(inputFromUser);
+            amount = atof(inputFromUser.c_str());
+            return amount;
+        } else {
+            cout << "To nie jest prawidlowa liczba! Wprowadz liczbe jeszcze raz: ";
+        }
+    } while (!isInputCorrect);
 }
 
 bool AuxiliaryMethods::isFloatNumberCorrect(string number) {
     int numberOfCommasAndDots = 0;
 
     for (int i = 0; i < number.length(); i++) {
-        if (number[i] <= '0' && number[i] >= '9') {
+        if (number[i] < '0' || number[i] > '9') {
             if (number[i] == '.' || number[i] == ',') {
                 numberOfCommasAndDots++;
                 if (numberOfCommasAndDots > 1) {
@@ -224,7 +233,7 @@ bool AuxiliaryMethods::isFloatNumberCorrect(string number) {
 
 string AuxiliaryMethods::replaceCommaWithDot(string number) {
     for(int i = 0; i < number.length(); i++) {
-        if(number[i] = ',') {
+        if(number[i] == ',') {
             number[i] = '.';
         }
     }

@@ -10,7 +10,7 @@ bool PersonalBudget::isUserLoggedIn() {
 
 void PersonalBudget::userLogging() {
     userPanel.userLogging();
-    operationPanel = new OperationPanel(userPanel.getLoggedInUserId());
+    operationPanel = new OperationPanel(userPanel.getLoggedInUserId(), NAME_OF_INCOMES_FILE);
 }
 
 void PersonalBudget::loggedInUserPasswordChange() {

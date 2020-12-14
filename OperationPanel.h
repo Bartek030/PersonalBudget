@@ -4,12 +4,14 @@
 #include <iostream>
 #include <vector>
 #include "IncomeOperationData.h"
+#include "IncomeFileOperations.h"
 #include "AuxiliaryMethods.h"
 
 using namespace std;
 
 class OperationPanel {
     vector<IncomeOperationData> incomes;
+    IncomeFileOperations fileWithIncomes;
     int LOGGED_IN_USER_ID;
 
     IncomeOperationData enterNewIncomeData();
@@ -17,7 +19,7 @@ class OperationPanel {
     char chooseOptionFromIncomeMenu();
 
 public:
-    OperationPanel(int loggedInUserId) : LOGGED_IN_USER_ID(loggedInUserId) {}
+    OperationPanel(int loggedInUserId, string nameOfIncomesFile) : LOGGED_IN_USER_ID(loggedInUserId), fileWithIncomes(nameOfIncomesFile) {}
 
     void addIncome();
 };

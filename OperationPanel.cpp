@@ -4,7 +4,7 @@ void OperationPanel::addIncome() {
     IncomeOperationData income = enterNewIncomeData();
 
     incomes.push_back(income);
-    //fileWithUsers.appendUserToFile(user);
+    fileWithIncomes.appendIncomeToFile(income);
 
     cout << endl << "Przychod zostal dodany pomyslnie" << endl << endl;
     system("pause");
@@ -15,24 +15,28 @@ IncomeOperationData OperationPanel::enterNewIncomeData() {
     string incomeDescription = "";
     float incomeAmount;
     char userChoice;
+    bool isChooseCorrect = false;
 
     system("cls");
     newIncome.setIncomeId(getNewIncomeId());
+    newIncome.setUserId(LOGGED_IN_USER_ID);
     do {
         userChoice = chooseOptionFromIncomeMenu();
         switch(userChoice) {
-        case 1:
+        case '1':
             newIncome.setOperationDate(AuxiliaryMethods::getTodayDate());
+            isChooseCorrect = true;
             break;
-        case 2:
+        case '2':
             newIncome.setOperationDate(AuxiliaryMethods::getDateFromUser());
+            isChooseCorrect = true;
             break;
         default:
             cout << endl << "Nie ma takiej opcji w menu." << endl << endl;
             system("pause");
             break;
         }
-    } while(true);
+    } while(!isChooseCorrect);
 
     cout << "Podaj zrodlo przychodu: ";
     incomeDescription = AuxiliaryMethods::loadLineFromUser();

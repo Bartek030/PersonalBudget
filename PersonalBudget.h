@@ -10,9 +10,10 @@ using namespace std;
 class PersonalBudget {
     UserPanel userPanel;
     OperationPanel *operationPanel;
+    const string NAME_OF_INCOMES_FILE;
 
 public:
-    PersonalBudget(string nameOfUsersFile) : userPanel(nameOfUsersFile) {
+    PersonalBudget(string nameOfUsersFile, string nameOfIncomesFile) : userPanel(nameOfUsersFile), NAME_OF_INCOMES_FILE(nameOfIncomesFile) {
         operationPanel = NULL;
     }
     ~PersonalBudget() {

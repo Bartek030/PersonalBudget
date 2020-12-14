@@ -9,6 +9,7 @@ class BudgetOperationData {
     string operationDate;
     string operationDescription;
     float amount;
+    int userId;
 
 public:
     BudgetOperationData(){}
@@ -16,9 +17,11 @@ public:
     string getOperationDate();
     string getOperationDescription();
     float getAmount();
+    int getUserId();
     void setOperationDate(string date);
     void setOperationDescription(string description);
     void setAmount(float amount);
+    void setUserId(int userId);
 };
 
 #endif // BUDGETOPERATIONDATA_H

@@ -22,6 +22,7 @@ class AuxiliaryMethods {
 
 public:
     static string convertIntIntoString(int number);
+    static string convertFloatIntoString(float number);
     static int convertStringIntoInt(string number);
     static string loadLineFromUser();
     static char loadCharacter();
