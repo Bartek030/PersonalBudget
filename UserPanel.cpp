@@ -72,7 +72,7 @@ bool UserPanel::isPasswordStrongEnough(string password) {
     if (isAtleastOneUpperLetter && isAtleastOneDigit && isAtleastEightCharacters) {
         return true;
     } else {
-        cout << endl << "Podane haslo nie jest wystarczajaco silne." << endl;
+        cout << endl << "Podane haslo nie jest wystarczajaco silne. Haslo musi zawierac min. 8 znaków, 1 cyfre i jedna duza litere." << endl;
         return false;
     }
 }
