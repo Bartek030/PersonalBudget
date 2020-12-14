@@ -72,11 +72,12 @@ string AuxiliaryMethods::getDateFromUser() {
         cout << "Podaj date operacji (RRRR-MM-DD): ";
         userDate = loadLineFromUser();
     } while (!isDateRangeCorrect(userDate));
-    cout << userDate; system("pause");
+    cout << userDate;
+    system("pause");
     return userDate;
 }
 
-bool AuxiliaryMethods::isDateRangeCorrect(string date){
+bool AuxiliaryMethods::isDateRangeCorrect(string date) {
     struct tm *currentTime = getCurrentDate();
     string years = "", months = "", days = "";
 
@@ -188,4 +189,44 @@ string AuxiliaryMethods::getOnlyDigitsFromDate(string date) {
         }
     }
     return onlyDigitsDate;
+}
+
+float AuxiliaryMethods::loadAmountFromUser() {
+    string inputFromUser = loadLineFromUser();
+    float amount;
+
+    if(isFloatNumberCorrect(inputFromUser)) {
+        inputFromUser = replaceCommaWithDot(inputFromUser);
+        amount = atof(inputFromUser.c_str());
+        return amount;
+    } else {
+        cout << "To nie jest prawidlowa liczba! Wprowadz liczbe jeszcze raz: ";
+    }
+}
+
+bool AuxiliaryMethods::isFloatNumberCorrect(string number) {
+    int numberOfCommasAndDots = 0;
+
+    for (int i = 0; i < number.length(); i++) {
+        if (number[i] <= '0' && number[i] >= '9') {
+            if (number[i] == '.' || number[i] == ',') {
+                numberOfCommasAndDots++;
+                if (numberOfCommasAndDots > 1) {
+                    return false;
+                }
+            } else {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
+string AuxiliaryMethods::replaceCommaWithDot(string number) {
+    for(int i = 0; i < number.length(); i++) {
+        if(number[i] = ',') {
+            number[i] = '.';
+        }
+    }
+    return number;
 }

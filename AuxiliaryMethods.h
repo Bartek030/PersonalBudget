@@ -5,6 +5,7 @@
 #include<algorithm>
 #include<sstream>
 #include <time.h>
+#include <cstdlib>
 
 using namespace std;
 
@@ -16,6 +17,8 @@ class AuxiliaryMethods {
     static bool showInfoAboutBadDateRange();
     static bool showInfoAboutBadDateFormat();
     static string getOnlyDigitsFromDate(string date);
+    static string replaceCommaWithDot(string number);
+    static bool isFloatNumberCorrect(string number);
 
 public:
     static string convertIntIntoString(int number);
@@ -25,6 +28,7 @@ public:
     static string changeFirstLetterToUpperAndRestToLower(string text);
     static string getTodayDate();
     static string getDateFromUser();
+    static float loadAmountFromUser();
 };
 
 #endif // AUXILIARYMETHODS_H
