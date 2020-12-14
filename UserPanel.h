@@ -28,8 +28,8 @@ public:
     void userRegister();
     bool isUserLoggedIn(int userId);
     void userLogging();
-    void userLoggingOut();
     void loggedInUserPasswordChange(int loggedInUserId);
+    void userLoggingOut();
 
     int getLoggedInUserId();
 };

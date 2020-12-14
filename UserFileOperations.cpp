@@ -64,6 +64,7 @@ void UserFileOperations::changeLoggedInUserPasswordInFile(string newPassword, in
             if(AuxiliaryMethods::convertStringIntoInt(xmlFile.GetChildData()) == loggedInUserId) {
                 xmlFile.FindChildElem(CHILD_PASSWORD);
                 xmlFile.SetChildData(newPassword);
+                break;
             }
         }
     } else {

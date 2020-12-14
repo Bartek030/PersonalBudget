@@ -3,7 +3,7 @@
 
 using namespace std;
 
-int main() {
+int _main() {
     PersonalBudget userPersonalBudget("users.xml");
     char userChoice;
 
@@ -30,7 +30,7 @@ int main() {
 
             switch (userChoice) {
             case '1':
-                //userPersonalBudget.addIncome();
+                userPersonalBudget.addIncome();
                 break;
             case '2':
                 //userPersonalBudget.addExpense();
