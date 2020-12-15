@@ -18,6 +18,10 @@ int AuxiliaryMethods::convertStringIntoInt(string number) {
     return atoi(number.c_str());
 }
 
+float AuxiliaryMethods::convertStringIntoFloat(string number) {
+    return atof(number.c_str());
+}
+
 string AuxiliaryMethods::loadLineFromUser() {
     string inputFromUser = "";
     cin.clear();
@@ -205,7 +209,7 @@ float AuxiliaryMethods::loadAmountFromUser() {
         if(isFloatNumberCorrect(inputFromUser)) {
             isInputCorrect = true;
             inputFromUser = replaceCommaWithDot(inputFromUser);
-            amount = atof(inputFromUser.c_str());
+            amount = convertStringIntoFloat(inputFromUser);
             return amount;
         } else {
             cout << "To nie jest prawidlowa liczba! Wprowadz liczbe jeszcze raz: ";

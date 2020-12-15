@@ -11,9 +11,11 @@ class PersonalBudget {
     UserPanel userPanel;
     OperationPanel *operationPanel;
     const string NAME_OF_INCOMES_FILE;
+    const string NAME_OF_EXPENSES_FILE;
 
 public:
-    PersonalBudget(string nameOfUsersFile, string nameOfIncomesFile) : userPanel(nameOfUsersFile), NAME_OF_INCOMES_FILE(nameOfIncomesFile) {
+    PersonalBudget(string nameOfUsersFile, string nameOfIncomesFile, string nameOfExpensesFile) : userPanel(nameOfUsersFile),
+                                        NAME_OF_INCOMES_FILE(nameOfIncomesFile), NAME_OF_EXPENSES_FILE(nameOfExpensesFile) {
         operationPanel = NULL;
     }
     ~PersonalBudget() {
@@ -27,6 +29,7 @@ public:
     void loggedInUserPasswordChange();
     void userLoggingOut();
     void addIncome();
+    void addExpense();
     char chooseOptionFromUserMenu();
     char chooseOptionFromOperationMenu();
 };
