@@ -24,6 +24,7 @@ public:
     static string convertIntIntoString(int number);
     static string convertFloatIntoString(float number);
     static int convertStringIntoInt(string number);
+    static float convertStringIntoFloat(string number);
     static string loadLineFromUser();
     static char loadCharacter();
     static string changeFirstLetterToUpperAndRestToLower(string text);

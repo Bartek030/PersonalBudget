@@ -10,7 +10,7 @@ bool PersonalBudget::isUserLoggedIn() {
 
 void PersonalBudget::userLogging() {
     userPanel.userLogging();
-    operationPanel = new OperationPanel(userPanel.getLoggedInUserId(), NAME_OF_INCOMES_FILE);
+    operationPanel = new OperationPanel(userPanel.getLoggedInUserId(), NAME_OF_INCOMES_FILE, NAME_OF_EXPENSES_FILE);
 }
 
 void PersonalBudget::loggedInUserPasswordChange() {
@@ -25,6 +25,10 @@ void PersonalBudget::userLoggingOut() {
 
 void PersonalBudget::addIncome() {
     operationPanel -> addIncome();
+}
+
+void PersonalBudget::addExpense() {
+    operationPanel -> addExpense();
 }
 
 char PersonalBudget::chooseOptionFromUserMenu() {

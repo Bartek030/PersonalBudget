@@ -1,27 +1,30 @@
-#ifndef BUDGETOPERATIONDATA_H
-#define BUDGETOPERATIONDATA_H
+#ifndef OPERATIONDATA_H
+#define OPERATIONDATA_H
 
 #include <iostream>
 
 using namespace std;
 
-class BudgetOperationData {
+class OperationData {
     string operationDate;
     string operationDescription;
     float amount;
     int userId;
+    int operationId;
 
 public:
-    BudgetOperationData(){}
+    OperationData(){}
 
     string getOperationDate();
     string getOperationDescription();
     float getAmount();
     int getUserId();
+    int getOperationId();
     void setOperationDate(string date);
     void setOperationDescription(string description);
     void setAmount(float amount);
     void setUserId(int userId);
+    void setOperationId(int operationId);
 };
 
-#endif // BUDGETOPERATIONDATA_H
+#endif // OPERATIONDATA_H
