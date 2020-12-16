@@ -149,6 +149,38 @@ void OperationPanel::displayFinancialStatmentFromPreviousMonth() {
     system("pause");
 }
 
+void OperationPanel::displayFinancialStatmentFromSelectedPeriodOfTime() {
+    string startingDate = "";
+    string endingDate = "";
+    vector<OperationData> choosedIncomes;
+    vector<OperationData> choosedExpenses;
+    float incomeSummary = 0.0;
+    float expenseSummary = 0.0;
+
+    system("cls");
+    cout << "PODAJ POCZATKOWA DATE" << endl;
+    startingDate = AuxiliaryMethods::getDateFromUser();
+    cout << endl;
+    cout << "PODAJ KONCOWA DATE" << endl;
+    endingDate = AuxiliaryMethods::getDateFromUser();
+    cout << endl;
+
+    choosedIncomes = getIncomesFromPeriodOfTime(startingDate, endingDate);
+    choosedExpenses = getExpensesFromPeriodOfTime(startingDate, endingDate);
+    incomeSummary = displayIncomes(choosedIncomes);
+    expenseSummary = displayExpenses(choosedExpenses);
+
+    cout << "BILANS OD " << startingDate << " DO " << endingDate << ":" << endl;
+    if (incomeSummary > expenseSummary){
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+    } else if (incomeSummary < expenseSummary) {
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
+    }
+    cout << (incomeSummary - expenseSummary) << endl << endl;
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
+    system("pause");
+}
+
 float OperationPanel::displayIncomes(vector<OperationData> choosedIncomes) {
     float incomeSummary = 0.0;
 
@@ -202,7 +234,7 @@ float OperationPanel::displayExpenses(vector<OperationData> choosedExpenses) {
 vector<OperationData> OperationPanel::getIncomesFromMonth(string currentDate) {
     vector<OperationData> incomesFromCurrentMonth;
     for (int i = 0; i < incomes.size(); i++) {
-        if (getYearAndMonthFromDate(currentDate) == getYearAndMonthFromDate(incomes[i].getOperationDate())) {
+        if (AuxiliaryMethods::getYearAndMonthFromDate(currentDate) == AuxiliaryMethods::getYearAndMonthFromDate(incomes[i].getOperationDate())) {
             if(incomesFromCurrentMonth.empty() == true) {
                 incomesFromCurrentMonth.push_back(incomes[i]);
             } else {
@@ -224,7 +256,7 @@ vector<OperationData> OperationPanel::getIncomesFromMonth(string currentDate) {
 vector<OperationData> OperationPanel::getExpensesFromMonth(string currentDate) {
     vector<OperationData> expensesFromCurrentMonth;
     for (int i = 0; i < expenses.size(); i++) {
-        if (getYearAndMonthFromDate(currentDate) == getYearAndMonthFromDate(expenses[i].getOperationDate())) {
+        if (AuxiliaryMethods::getYearAndMonthFromDate(currentDate) == AuxiliaryMethods::getYearAndMonthFromDate(expenses[i].getOperationDate())) {
             if(expensesFromCurrentMonth.empty() == true) {
                 expensesFromCurrentMonth.push_back(expenses[i]);
             } else {
@@ -243,20 +275,46 @@ vector<OperationData> OperationPanel::getExpensesFromMonth(string currentDate) {
     return expensesFromCurrentMonth;
 }
 
-int OperationPanel::getYearAndMonthFromDate(string date) {
-    string yearAndMonth = "";
-    int separateChar = 0;
-
-    for (int i = 0; i < date.length(); i++) {
-        if (date[i] == '-') {
-            separateChar++;
-            if (separateChar > 1) {
-                break;
+vector<OperationData> OperationPanel::getIncomesFromPeriodOfTime(string startingDate, string endingDate) {
+    vector<OperationData> incomesFromPeriodOfTime;
+    for (int i = 0; i < incomes.size(); i++) {
+        if (AuxiliaryMethods::changeDateIntoIntegerValue(startingDate) <= AuxiliaryMethods::changeDateIntoIntegerValue(incomes[i].getOperationDate()) && AuxiliaryMethods::changeDateIntoIntegerValue(endingDate) >= AuxiliaryMethods::changeDateIntoIntegerValue(incomes[i].getOperationDate())) {
+            if(incomesFromPeriodOfTime.empty() == true) {
+                incomesFromPeriodOfTime.push_back(incomes[i]);
+            } else {
+                for (int j = 0; j < incomesFromPeriodOfTime.size(); j++) {
+                    if(AuxiliaryMethods::changeDateIntoIntegerValue(incomesFromPeriodOfTime[j].getOperationDate()) >= AuxiliaryMethods::changeDateIntoIntegerValue(incomes[i].getOperationDate())) {
+                        incomesFromPeriodOfTime.insert(incomesFromPeriodOfTime.begin() + j, incomes[i]);
+                        break;
+                    } else {
+                        incomesFromPeriodOfTime.push_back(incomes[i]);
+                        break;
+                    }
+                }
             }
-            continue;
         }
-        yearAndMonth += date[i];
     }
+    return incomesFromPeriodOfTime;
+}
 
-    return AuxiliaryMethods::convertStringIntoInt(yearAndMonth);
+vector<OperationData> OperationPanel::getExpensesFromPeriodOfTime(string startingDate, string endingDate) {
+    vector<OperationData> expensesFromPeriodOfTime;
+    for (int i = 0; i < expenses.size(); i++) {
+        if (AuxiliaryMethods::changeDateIntoIntegerValue(startingDate) <= AuxiliaryMethods::changeDateIntoIntegerValue(expenses[i].getOperationDate()) && AuxiliaryMethods::changeDateIntoIntegerValue(endingDate) >= AuxiliaryMethods::changeDateIntoIntegerValue(expenses[i].getOperationDate())) {
+            if(expensesFromPeriodOfTime.empty() == true) {
+                expensesFromPeriodOfTime.push_back(expenses[i]);
+            } else {
+                for (int j = 0; j < expensesFromPeriodOfTime.size(); j++) {
+                    if(AuxiliaryMethods::changeDateIntoIntegerValue(expensesFromPeriodOfTime[j].getOperationDate()) >= AuxiliaryMethods::changeDateIntoIntegerValue(expenses[i].getOperationDate())) {
+                        expensesFromPeriodOfTime.insert(expensesFromPeriodOfTime.begin() + j, expenses[i]);
+                        break;
+                    } else {
+                        expensesFromPeriodOfTime.push_back(expenses[i]);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    return expensesFromPeriodOfTime;
 }

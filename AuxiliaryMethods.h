@@ -31,6 +31,7 @@ public:
     static string getTodayDate();
     static string getPreviousMonthDate();
     static string getDateFromUser();
+    static int getYearAndMonthFromDate(string date);
     static float loadAmountFromUser();
     static int changeDateIntoIntegerValue(string date);
 };

@@ -42,7 +42,7 @@ int main() {
                 userPersonalBudget.displayFinancialStatmentFromPreviousMonth();
                 break;
             case '5':
-                //userPersonalBudget.displayFinancialStatmentFromSelectedPeriodOfTime();
+                userPersonalBudget.displayFinancialStatmentFromSelectedPeriodOfTime();
                 break;
             case '9':
                 userPersonalBudget.loggedInUserPasswordChange();

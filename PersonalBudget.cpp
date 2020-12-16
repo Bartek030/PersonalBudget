@@ -39,6 +39,10 @@ void PersonalBudget::displayFinancialStatmentFromPreviousMonth() {
     operationPanel -> displayFinancialStatmentFromPreviousMonth();
 }
 
+void PersonalBudget::displayFinancialStatmentFromSelectedPeriodOfTime() {
+    operationPanel -> displayFinancialStatmentFromSelectedPeriodOfTime();
+}
+
 char PersonalBudget::chooseOptionFromUserMenu() {
     char choice;
 

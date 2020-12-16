@@ -99,6 +99,24 @@ string AuxiliaryMethods::getDateFromUser() {
     return userDate;
 }
 
+int AuxiliaryMethods::getYearAndMonthFromDate(string date) {
+    string yearAndMonth = "";
+    int separateChar = 0;
+
+    for (int i = 0; i < date.length(); i++) {
+        if (date[i] == '-') {
+            separateChar++;
+            if (separateChar > 1) {
+                break;
+            }
+            continue;
+        }
+        yearAndMonth += date[i];
+    }
+
+    return convertStringIntoInt(yearAndMonth);
+}
+
 bool AuxiliaryMethods::isDateRangeCorrect(string date) {
     struct tm *currentTime = getCurrentDate();
     string years = "", months = "", days = "";
