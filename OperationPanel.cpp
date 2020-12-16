@@ -85,6 +85,7 @@ char OperationPanel::chooseOptionFromIncomeMenu() {
     cout << "---------------------------" << endl;
     cout << "Twoj wybor: ";
     choice = AuxiliaryMethods::loadCharacter();
+    cout << endl;
 
     return choice;
 }
@@ -101,6 +102,221 @@ char OperationPanel::chooseOptionFromExpenseMenu() {
     cout << "---------------------------" << endl;
     cout << "Twoj wybor: ";
     choice = AuxiliaryMethods::loadCharacter();
+    cout << endl;
 
     return choice;
+}
+
+void OperationPanel::displayFinancialStatmentFromCurrentMonth() {
+    string currentDate = AuxiliaryMethods::getTodayDate();
+    vector<OperationData> choosedIncomes = getIncomesFromMonth(currentDate);
+    vector<OperationData> choosedExpenses = getExpensesFromMonth(currentDate);
+    float incomeSummary = 0.0;
+    float expenseSummary = 0.0;
+
+    system("cls");
+    incomeSummary = displayIncomes(choosedIncomes);
+    expenseSummary = displayExpenses(choosedExpenses);
+
+    cout << "BILANS: " << endl;
+    if (incomeSummary > expenseSummary){
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+    } else if (incomeSummary < expenseSummary) {
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
+    }
+    cout << (incomeSummary - expenseSummary) << endl << endl;
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
+    system("pause");
+}
+
+void OperationPanel::displayFinancialStatmentFromPreviousMonth() {
+    string previousMonthDate = AuxiliaryMethods::getPreviousMonthDate();
+    vector<OperationData> choosedIncomes = getIncomesFromMonth(previousMonthDate);
+    vector<OperationData> choosedExpenses = getExpensesFromMonth(previousMonthDate);
+    float incomeSummary = 0.0;
+    float expenseSummary = 0.0;
+
+    system("cls");
+    incomeSummary = displayIncomes(choosedIncomes);
+    expenseSummary = displayExpenses(choosedExpenses);
+
+    cout << "BILANS: " << endl;
+    if (incomeSummary > expenseSummary){
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+    } else if (incomeSummary < expenseSummary) {
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
+    }
+    cout << (incomeSummary - expenseSummary) << endl << endl;
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
+    system("pause");
+}
+
+void OperationPanel::displayFinancialStatmentFromSelectedPeriodOfTime() {
+    string startingDate = "";
+    string endingDate = "";
+    vector<OperationData> choosedIncomes;
+    vector<OperationData> choosedExpenses;
+    float incomeSummary = 0.0;
+    float expenseSummary = 0.0;
+
+    system("cls");
+    cout << "PODAJ POCZATKOWA DATE" << endl;
+    startingDate = AuxiliaryMethods::getDateFromUser();
+    cout << endl;
+    cout << "PODAJ KONCOWA DATE" << endl;
+    endingDate = AuxiliaryMethods::getDateFromUser();
+    cout << endl;
+
+    choosedIncomes = getIncomesFromPeriodOfTime(startingDate, endingDate);
+    choosedExpenses = getExpensesFromPeriodOfTime(startingDate, endingDate);
+    incomeSummary = displayIncomes(choosedIncomes);
+    expenseSummary = displayExpenses(choosedExpenses);
+
+    cout << "BILANS OD " << startingDate << " DO " << endingDate << ":" << endl;
+    if (incomeSummary > expenseSummary){
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+    } else if (incomeSummary < expenseSummary) {
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
+    }
+    cout << (incomeSummary - expenseSummary) << endl << endl;
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
+    system("pause");
+}
+
+float OperationPanel::displayIncomes(vector<OperationData> choosedIncomes) {
+    float incomeSummary = 0.0;
+
+    cout << "    >>> DOCHODY: <<<" << endl << endl;
+
+    cout.setf(ios::showpoint);
+    cout.precision(2);
+    cout.setf(ios::fixed);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+
+    for (int i = 0; i < choosedIncomes.size(); i++) {
+        cout << setw(10) << choosedIncomes[i].getOperationDate() << setw(30) << choosedIncomes[i].getOperationDescription() << setw(10) << choosedIncomes[i].getAmount() << endl;
+        incomeSummary += choosedIncomes[i].getAmount();
+    }
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
+    cout << "--------------------------------------------------" << endl;
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+    cout << "W SUMIE: " << incomeSummary << endl << endl;
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
+
+    system("pause");
+    cout << endl;
+    return incomeSummary;
+}
+
+float OperationPanel::displayExpenses(vector<OperationData> choosedExpenses) {
+    float expenseSummary = 0.0;
+
+    cout << "    >>> WYDATKI: <<<" << endl << endl;
+
+    cout.setf(ios::showpoint);
+    cout.precision(2);
+    cout.setf(ios::fixed);
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
+
+    for (int i = 0; i < choosedExpenses.size(); i++) {
+        cout << setw(10) << choosedExpenses[i].getOperationDate() << setw(30) << choosedExpenses[i].getOperationDescription() << setw(10) << choosedExpenses[i].getAmount() << endl;
+        expenseSummary += choosedExpenses[i].getAmount();
+    }
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
+    cout << "--------------------------------------------------" << endl;
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
+    cout << "W SUMIE: " << expenseSummary << endl << endl;
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
+
+    system("pause");
+    cout << endl;
+    return expenseSummary;
+}
+
+vector<OperationData> OperationPanel::getIncomesFromMonth(string currentDate) {
+    vector<OperationData> incomesFromCurrentMonth;
+    for (int i = 0; i < incomes.size(); i++) {
+        if (AuxiliaryMethods::getYearAndMonthFromDate(currentDate) == AuxiliaryMethods::getYearAndMonthFromDate(incomes[i].getOperationDate())) {
+            if(incomesFromCurrentMonth.empty() == true) {
+                incomesFromCurrentMonth.push_back(incomes[i]);
+            } else {
+                for (int j = 0; j < incomesFromCurrentMonth.size(); j++) {
+                    if(AuxiliaryMethods::changeDateIntoIntegerValue(incomesFromCurrentMonth[j].getOperationDate()) >= AuxiliaryMethods::changeDateIntoIntegerValue(incomes[i].getOperationDate())) {
+                        incomesFromCurrentMonth.insert(incomesFromCurrentMonth.begin() + j, incomes[i]);
+                        break;
+                    } else {
+                        incomesFromCurrentMonth.push_back(incomes[i]);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    return incomesFromCurrentMonth;
+}
+
+vector<OperationData> OperationPanel::getExpensesFromMonth(string currentDate) {
+    vector<OperationData> expensesFromCurrentMonth;
+    for (int i = 0; i < expenses.size(); i++) {
+        if (AuxiliaryMethods::getYearAndMonthFromDate(currentDate) == AuxiliaryMethods::getYearAndMonthFromDate(expenses[i].getOperationDate())) {
+            if(expensesFromCurrentMonth.empty() == true) {
+                expensesFromCurrentMonth.push_back(expenses[i]);
+            } else {
+                for (int j = 0; j < expensesFromCurrentMonth.size(); j++) {
+                    if(AuxiliaryMethods::changeDateIntoIntegerValue(expensesFromCurrentMonth[j].getOperationDate()) >= AuxiliaryMethods::changeDateIntoIntegerValue(expenses[i].getOperationDate())) {
+                        expensesFromCurrentMonth.insert(expensesFromCurrentMonth.begin() + j, expenses[i]);
+                        break;
+                    } else {
+                        expensesFromCurrentMonth.push_back(expenses[i]);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    return expensesFromCurrentMonth;
+}
+
+vector<OperationData> OperationPanel::getIncomesFromPeriodOfTime(string startingDate, string endingDate) {
+    vector<OperationData> incomesFromPeriodOfTime;
+    for (int i = 0; i < incomes.size(); i++) {
+        if (AuxiliaryMethods::changeDateIntoIntegerValue(startingDate) <= AuxiliaryMethods::changeDateIntoIntegerValue(incomes[i].getOperationDate()) && AuxiliaryMethods::changeDateIntoIntegerValue(endingDate) >= AuxiliaryMethods::changeDateIntoIntegerValue(incomes[i].getOperationDate())) {
+            if(incomesFromPeriodOfTime.empty() == true) {
+                incomesFromPeriodOfTime.push_back(incomes[i]);
+            } else {
+                for (int j = 0; j < incomesFromPeriodOfTime.size(); j++) {
+                    if(AuxiliaryMethods::changeDateIntoIntegerValue(incomesFromPeriodOfTime[j].getOperationDate()) >= AuxiliaryMethods::changeDateIntoIntegerValue(incomes[i].getOperationDate())) {
+                        incomesFromPeriodOfTime.insert(incomesFromPeriodOfTime.begin() + j, incomes[i]);
+                        break;
+                    } else {
+                        incomesFromPeriodOfTime.push_back(incomes[i]);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    return incomesFromPeriodOfTime;
+}
+
+vector<OperationData> OperationPanel::getExpensesFromPeriodOfTime(string startingDate, string endingDate) {
+    vector<OperationData> expensesFromPeriodOfTime;
+    for (int i = 0; i < expenses.size(); i++) {
+        if (AuxiliaryMethods::changeDateIntoIntegerValue(startingDate) <= AuxiliaryMethods::changeDateIntoIntegerValue(expenses[i].getOperationDate()) && AuxiliaryMethods::changeDateIntoIntegerValue(endingDate) >= AuxiliaryMethods::changeDateIntoIntegerValue(expenses[i].getOperationDate())) {
+            if(expensesFromPeriodOfTime.empty() == true) {
+                expensesFromPeriodOfTime.push_back(expenses[i]);
+            } else {
+                for (int j = 0; j < expensesFromPeriodOfTime.size(); j++) {
+                    if(AuxiliaryMethods::changeDateIntoIntegerValue(expensesFromPeriodOfTime[j].getOperationDate()) >= AuxiliaryMethods::changeDateIntoIntegerValue(expenses[i].getOperationDate())) {
+                        expensesFromPeriodOfTime.insert(expensesFromPeriodOfTime.begin() + j, expenses[i]);
+                        break;
+                    } else {
+                        expensesFromPeriodOfTime.push_back(expenses[i]);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    return expensesFromPeriodOfTime;
 }

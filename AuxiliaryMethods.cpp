@@ -75,6 +75,19 @@ string AuxiliaryMethods::getTodayDate() {
     return date;
 };
 
+string AuxiliaryMethods::getPreviousMonthDate() {
+    struct tm *currentDate = getCurrentDate();
+    string date = "";
+
+    if ((currentDate -> tm_mon + 1) != 1) {
+        date = convertIntIntoString(currentDate -> tm_year + 1900) + "-" + convertIntIntoString(currentDate -> tm_mon + 1 - 1) + "-" + convertIntIntoString(currentDate -> tm_mday);
+    } else {
+        date = convertIntIntoString(currentDate -> tm_year + 1900 - 1) + "-" + convertIntIntoString(currentDate -> tm_mon + 1 + 11) + "-" + convertIntIntoString(currentDate -> tm_mday);
+    }
+
+    return date;
+}
+
 string AuxiliaryMethods::getDateFromUser() {
     struct tm *currentDate = getCurrentDate();
     string userDate = "";
@@ -84,6 +97,24 @@ string AuxiliaryMethods::getDateFromUser() {
         userDate = loadLineFromUser();
     } while (!isDateRangeCorrect(userDate));
     return userDate;
+}
+
+int AuxiliaryMethods::getYearAndMonthFromDate(string date) {
+    string yearAndMonth = "";
+    int separateChar = 0;
+
+    for (int i = 0; i < date.length(); i++) {
+        if (date[i] == '-') {
+            separateChar++;
+            if (separateChar > 1) {
+                break;
+            }
+            continue;
+        }
+        yearAndMonth += date[i];
+    }
+
+    return convertStringIntoInt(yearAndMonth);
 }
 
 bool AuxiliaryMethods::isDateRangeCorrect(string date) {
@@ -111,7 +142,7 @@ bool AuxiliaryMethods::isDateRangeCorrect(string date) {
             } else {
                 return showInfoAboutBadDateRange();
             }
-        } else if (convertStringIntoInt(years) < (currentTime -> tm_year + 1900)) {
+        } else if (convertStringIntoInt(years) < (currentTime -> tm_year + 1900) && convertStringIntoInt(years) >= 2000) {
             if (convertStringIntoInt(months) >= 1 && convertStringIntoInt(months) <= 12) {
                 if(isNumberOfDaysCorrect(convertStringIntoInt(years), convertStringIntoInt(months), convertStringIntoInt(days))) {
                     return true;
@@ -242,4 +273,15 @@ string AuxiliaryMethods::replaceCommaWithDot(string number) {
         }
     }
     return number;
+}
+
+int AuxiliaryMethods::changeDateIntoIntegerValue(string date) {
+    string intDate = "";
+
+    for (int i = 0; i < date.length(); i++) {
+        if (date[i] != '-') {
+            intDate += date[i];
+        }
+    }
+    return convertStringIntoInt(intDate);
 }

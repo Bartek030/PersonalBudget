@@ -36,13 +36,13 @@ int main() {
                 userPersonalBudget.addExpense();
                 break;
             case '3':
-                //userPersonalBudget.displayFinancialStatmentFromCurrentMonth();
+                userPersonalBudget.displayFinancialStatmentFromCurrentMonth();
                 break;
             case '4':
-                //userPersonalBudget.displayFinancialStatmentFromLastMonth();
+                userPersonalBudget.displayFinancialStatmentFromPreviousMonth();
                 break;
             case '5':
-                //userPersonalBudget.displayFinancialStatmentFromSelectedPeriodOfTime();
+                userPersonalBudget.displayFinancialStatmentFromSelectedPeriodOfTime();
                 break;
             case '9':
                 userPersonalBudget.loggedInUserPasswordChange();

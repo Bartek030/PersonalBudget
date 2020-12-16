@@ -31,6 +31,18 @@ void PersonalBudget::addExpense() {
     operationPanel -> addExpense();
 }
 
+void PersonalBudget::displayFinancialStatmentFromCurrentMonth() {
+    operationPanel -> displayFinancialStatmentFromCurrentMonth();
+}
+
+void PersonalBudget::displayFinancialStatmentFromPreviousMonth() {
+    operationPanel -> displayFinancialStatmentFromPreviousMonth();
+}
+
+void PersonalBudget::displayFinancialStatmentFromSelectedPeriodOfTime() {
+    operationPanel -> displayFinancialStatmentFromSelectedPeriodOfTime();
+}
+
 char PersonalBudget::chooseOptionFromUserMenu() {
     char choice;
 
@@ -43,6 +55,7 @@ char PersonalBudget::chooseOptionFromUserMenu() {
     cout << "---------------------------" << endl;
     cout << "Twoj wybor: ";
     choice = AuxiliaryMethods::loadCharacter();
+    cout << endl;
 
     return choice;
 }
@@ -63,6 +76,7 @@ char PersonalBudget::chooseOptionFromOperationMenu() {
     cout << "---------------------------" << endl;
     cout << "Twoj wybor: ";
     choice = AuxiliaryMethods::loadCharacter();
+    cout << endl;
 
     return choice;
 }
