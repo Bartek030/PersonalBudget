@@ -31,6 +31,10 @@ void PersonalBudget::addExpense() {
     operationPanel -> addExpense();
 }
 
+void PersonalBudget::displayFinancialStatmentFromCurrentMonth() {
+    operationPanel -> displayFinancialStatmentFromCurrentMonth();
+}
+
 char PersonalBudget::chooseOptionFromUserMenu() {
     char choice;
 

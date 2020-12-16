@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <vector>
+#include <windows.h>
+#include <iomanip>
 #include "OperationData.h"
 #include "FileOperations.h"
 #include "AuxiliaryMethods.h"
@@ -20,6 +22,11 @@ class OperationPanel {
     int getNewId(char operationChar);
     char chooseOptionFromIncomeMenu();
     char chooseOptionFromExpenseMenu();
+    int getYearAndMonthFromDate(string date);
+    vector<OperationData> getIncomesFromCurrentMonth(string currentDate);
+    vector<OperationData> getExpensesFromCurrentMonth(string currentDate);
+    float displayIncomes(vector<OperationData> choosedIncomes);
+    float displayExpenses(vector<OperationData> choosedExpenses);
 
 public:
     OperationPanel(int loggedInUserId, string nameOfIncomesFile, string nameOfExpensesFile) : LOGGED_IN_USER_ID(loggedInUserId),
@@ -30,6 +37,7 @@ public:
 
     void addIncome();
     void addExpense();
+    void displayFinancialStatmentFromCurrentMonth();
 };
 
 #endif // OPERATIONPANEL_H

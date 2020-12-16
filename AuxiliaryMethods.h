@@ -31,6 +31,7 @@ public:
     static string getTodayDate();
     static string getDateFromUser();
     static float loadAmountFromUser();
+    static int changeDateIntoIntegerValue(string date);
 };
 
 #endif // AUXILIARYMETHODS_H

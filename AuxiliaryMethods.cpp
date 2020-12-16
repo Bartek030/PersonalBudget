@@ -111,7 +111,7 @@ bool AuxiliaryMethods::isDateRangeCorrect(string date) {
             } else {
                 return showInfoAboutBadDateRange();
             }
-        } else if (convertStringIntoInt(years) < (currentTime -> tm_year + 1900)) {
+        } else if (convertStringIntoInt(years) < (currentTime -> tm_year + 1900) && convertStringIntoInt(years) >= 2000) {
             if (convertStringIntoInt(months) >= 1 && convertStringIntoInt(months) <= 12) {
                 if(isNumberOfDaysCorrect(convertStringIntoInt(years), convertStringIntoInt(months), convertStringIntoInt(days))) {
                     return true;
@@ -242,4 +242,15 @@ string AuxiliaryMethods::replaceCommaWithDot(string number) {
         }
     }
     return number;
+}
+
+int AuxiliaryMethods::changeDateIntoIntegerValue(string date) {
+    string intDate = "";
+
+    for (int i = 0; i < date.length(); i++) {
+        if (date[i] != '-') {
+            intDate += date[i];
+        }
+    }
+    return convertStringIntoInt(intDate);
 }

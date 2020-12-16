@@ -30,6 +30,7 @@ public:
     void userLoggingOut();
     void addIncome();
     void addExpense();
+    void displayFinancialStatmentFromCurrentMonth();
     char chooseOptionFromUserMenu();
     char chooseOptionFromOperationMenu();
 };
