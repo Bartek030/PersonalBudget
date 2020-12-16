@@ -23,8 +23,8 @@ class OperationPanel {
     char chooseOptionFromIncomeMenu();
     char chooseOptionFromExpenseMenu();
     int getYearAndMonthFromDate(string date);
-    vector<OperationData> getIncomesFromCurrentMonth(string currentDate);
-    vector<OperationData> getExpensesFromCurrentMonth(string currentDate);
+    vector<OperationData> getIncomesFromMonth(string currentDate);
+    vector<OperationData> getExpensesFromMonth(string currentDate);
     float displayIncomes(vector<OperationData> choosedIncomes);
     float displayExpenses(vector<OperationData> choosedExpenses);
 
@@ -38,6 +38,7 @@ public:
     void addIncome();
     void addExpense();
     void displayFinancialStatmentFromCurrentMonth();
+    void displayFinancialStatmentFromPreviousMonth();
 };
 
 #endif // OPERATIONPANEL_H

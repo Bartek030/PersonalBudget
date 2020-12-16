@@ -75,6 +75,19 @@ string AuxiliaryMethods::getTodayDate() {
     return date;
 };
 
+string AuxiliaryMethods::getPreviousMonthDate() {
+    struct tm *currentDate = getCurrentDate();
+    string date = "";
+
+    if ((currentDate -> tm_mon + 1) != 1) {
+        date = convertIntIntoString(currentDate -> tm_year + 1900) + "-" + convertIntIntoString(currentDate -> tm_mon + 1 - 1) + "-" + convertIntIntoString(currentDate -> tm_mday);
+    } else {
+        date = convertIntIntoString(currentDate -> tm_year + 1900 - 1) + "-" + convertIntIntoString(currentDate -> tm_mon + 1 + 11) + "-" + convertIntIntoString(currentDate -> tm_mday);
+    }
+
+    return date;
+}
+
 string AuxiliaryMethods::getDateFromUser() {
     struct tm *currentDate = getCurrentDate();
     string userDate = "";

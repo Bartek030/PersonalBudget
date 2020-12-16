@@ -31,6 +31,7 @@ public:
     void addIncome();
     void addExpense();
     void displayFinancialStatmentFromCurrentMonth();
+    void displayFinancialStatmentFromPreviousMonth();
     char chooseOptionFromUserMenu();
     char chooseOptionFromOperationMenu();
 };

@@ -107,8 +107,30 @@ char OperationPanel::chooseOptionFromExpenseMenu() {
 
 void OperationPanel::displayFinancialStatmentFromCurrentMonth() {
     string currentDate = AuxiliaryMethods::getTodayDate();
-    vector<OperationData> choosedIncomes = getIncomesFromCurrentMonth(currentDate);
-    vector<OperationData> choosedExpenses = getExpensesFromCurrentMonth(currentDate);
+    vector<OperationData> choosedIncomes = getIncomesFromMonth(currentDate);
+    vector<OperationData> choosedExpenses = getExpensesFromMonth(currentDate);
+    float incomeSummary = 0.0;
+    float expenseSummary = 0.0;
+
+    system("cls");
+    incomeSummary = displayIncomes(choosedIncomes);
+    expenseSummary = displayExpenses(choosedExpenses);
+
+    cout << "BILANS: " << endl;
+    if (incomeSummary > expenseSummary){
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_INTENSITY);
+    } else if (incomeSummary < expenseSummary) {
+        SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_RED | FOREGROUND_INTENSITY);
+    }
+    cout << (incomeSummary - expenseSummary) << endl << endl;
+    SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_RED);
+    system("pause");
+}
+
+void OperationPanel::displayFinancialStatmentFromPreviousMonth() {
+    string previousMonthDate = AuxiliaryMethods::getPreviousMonthDate();
+    vector<OperationData> choosedIncomes = getIncomesFromMonth(previousMonthDate);
+    vector<OperationData> choosedExpenses = getExpensesFromMonth(previousMonthDate);
     float incomeSummary = 0.0;
     float expenseSummary = 0.0;
 
@@ -177,7 +199,7 @@ float OperationPanel::displayExpenses(vector<OperationData> choosedExpenses) {
     return expenseSummary;
 }
 
-vector<OperationData> OperationPanel::getIncomesFromCurrentMonth(string currentDate) {
+vector<OperationData> OperationPanel::getIncomesFromMonth(string currentDate) {
     vector<OperationData> incomesFromCurrentMonth;
     for (int i = 0; i < incomes.size(); i++) {
         if (getYearAndMonthFromDate(currentDate) == getYearAndMonthFromDate(incomes[i].getOperationDate())) {
@@ -199,7 +221,7 @@ vector<OperationData> OperationPanel::getIncomesFromCurrentMonth(string currentD
     return incomesFromCurrentMonth;
 }
 
-vector<OperationData> OperationPanel::getExpensesFromCurrentMonth(string currentDate) {
+vector<OperationData> OperationPanel::getExpensesFromMonth(string currentDate) {
     vector<OperationData> expensesFromCurrentMonth;
     for (int i = 0; i < expenses.size(); i++) {
         if (getYearAndMonthFromDate(currentDate) == getYearAndMonthFromDate(expenses[i].getOperationDate())) {
