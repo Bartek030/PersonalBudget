@@ -55,6 +55,7 @@ char PersonalBudget::chooseOptionFromUserMenu() {
     cout << "---------------------------" << endl;
     cout << "Twoj wybor: ";
     choice = AuxiliaryMethods::loadCharacter();
+    cout << endl;
 
     return choice;
 }
@@ -75,6 +76,7 @@ char PersonalBudget::chooseOptionFromOperationMenu() {
     cout << "---------------------------" << endl;
     cout << "Twoj wybor: ";
     choice = AuxiliaryMethods::loadCharacter();
+    cout << endl;
 
     return choice;
 }

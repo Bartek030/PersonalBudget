@@ -85,6 +85,7 @@ char OperationPanel::chooseOptionFromIncomeMenu() {
     cout << "---------------------------" << endl;
     cout << "Twoj wybor: ";
     choice = AuxiliaryMethods::loadCharacter();
+    cout << endl;
 
     return choice;
 }
@@ -101,6 +102,7 @@ char OperationPanel::chooseOptionFromExpenseMenu() {
     cout << "---------------------------" << endl;
     cout << "Twoj wybor: ";
     choice = AuxiliaryMethods::loadCharacter();
+    cout << endl;
 
     return choice;
 }

@@ -72,7 +72,7 @@ bool UserPanel::isPasswordStrongEnough(string password) {
     if (isAtleastOneUpperLetter && isAtleastOneDigit && isAtleastEightCharacters) {
         return true;
     } else {
-        cout << endl << "Podane haslo nie jest wystarczajaco silne. Haslo musi zawierac min. 8 znaków, 1 cyfre i jedna duza litere." << endl;
+        cout << endl << "Podane haslo nie jest wystarczajaco silne. Haslo musi zawierac min. 8 znakow, 1 cyfre i jedna duza litere." << endl;
         return false;
     }
 }
@@ -98,7 +98,7 @@ void UserPanel::userLogging() {
                 password = AuxiliaryMethods::loadLineFromUser();
 
                 if (users[i].getPassword() == password) {
-                    cout << endl << "Zalogowales sie. Witaj " << users[i].getName() << " ! Milo Cie widziec! :-)" << endl << endl;
+                    cout << endl << "Zalogowales sie. Witaj " << users[i].getName() << "! Milo Cie widziec! :-)" << endl << endl;
                     system("pause");
                     loggedInUserId = users[i].getUserId();
                     return;

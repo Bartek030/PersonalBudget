@@ -22,7 +22,6 @@ class OperationPanel {
     int getNewId(char operationChar);
     char chooseOptionFromIncomeMenu();
     char chooseOptionFromExpenseMenu();
-
     vector<OperationData> getIncomesFromMonth(string currentDate);
     vector<OperationData> getExpensesFromMonth(string currentDate);
     float displayIncomes(vector<OperationData> choosedIncomes);
