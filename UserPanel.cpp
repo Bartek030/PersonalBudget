@@ -26,21 +26,18 @@ User UserPanel::enterNewUserData() {
         cout << "Podaj login: ";
         login = AuxiliaryMethods::loadLineFromUser();
         user.setLogin(login);
-    } while (isLoginExist(user.getLogin()) == true);
+    } while (isLoginExist(user.getLogin()));
 
     do {
         cout << "Podaj haslo: ";
         password = AuxiliaryMethods::loadLineFromUser();
         user.setPassword(password);
-    } while (!isPasswordStrongEnough(user.getPassword()) == true);
+    } while (!isPasswordStrongEnough(user.getPassword()));
     return user;
 }
 
 int UserPanel::getNewUserId() {
-    if (users.empty() == true)
-        return 1;
-    else
-        return users.back().getUserId() + 1;
+    return (users.empty()) ? 1 : users.back().getUserId() + 1;
 }
 
 bool UserPanel::isLoginExist(string login) {

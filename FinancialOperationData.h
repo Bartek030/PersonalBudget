@@ -1,11 +1,11 @@
-#ifndef OPERATIONDATA_H
-#define OPERATIONDATA_H
+#ifndef FINANCIALOPERATIONDATA_H
+#define FINANCIALOPERATIONDATA_H
 
 #include <iostream>
 
 using namespace std;
 
-class OperationData {
+class FinancialOperationData {
     string operationDate;
     string operationDescription;
     float amount;
@@ -13,7 +13,7 @@ class OperationData {
     int operationId;
 
 public:
-    OperationData(){}
+    FinancialOperationData(){}
 
     string getOperationDate();
     string getOperationDescription();
@@ -27,4 +27,4 @@ public:
     void setOperationId(int operationId);
 };
 
-#endif // OPERATIONDATA_H
+#endif // FINANCIALOPERATIONDATA_H

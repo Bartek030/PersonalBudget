@@ -5,29 +5,31 @@
 #include <vector>
 #include <windows.h>
 #include <iomanip>
-#include "OperationData.h"
+#include "FinancialOperationData.h"
 #include "FileOperations.h"
 #include "AuxiliaryMethods.h"
+#include "CalendarOperations.h"
 
 using namespace std;
 
 class OperationPanel {
-    vector<OperationData> incomes;
-    vector<OperationData> expenses;
+    vector<FinancialOperationData> incomes;
+    vector<FinancialOperationData> expenses;
     FileOperations fileWithIncomes;
     FileOperations fileWithExpenses;
     int LOGGED_IN_USER_ID;
 
-    OperationData enterNewOperationData(char operationChar);
+    FinancialOperationData enterNewOperationData(char operationChar);
     int getNewId(char operationChar);
     char chooseOptionFromIncomeMenu();
     char chooseOptionFromExpenseMenu();
-    vector<OperationData> getIncomesFromMonth(string currentDate);
-    vector<OperationData> getExpensesFromMonth(string currentDate);
-    float displayIncomes(vector<OperationData> choosedIncomes);
-    float displayExpenses(vector<OperationData> choosedExpenses);
-    vector<OperationData> getIncomesFromPeriodOfTime(string startingDate, string endingDate);
-    vector<OperationData> getExpensesFromPeriodOfTime(string startingDate, string endingDate);
+    vector<FinancialOperationData> getIncomesFromMonth(string currentDate);
+    vector<FinancialOperationData> getExpensesFromMonth(string currentDate);
+    float displayIncomes(vector<FinancialOperationData> choosedIncomes);
+    float displayExpenses(vector<FinancialOperationData> choosedExpenses);
+    vector<FinancialOperationData> getIncomesFromPeriodOfTime(string startingDate, string endingDate);
+    vector<FinancialOperationData> getExpensesFromPeriodOfTime(string startingDate, string endingDate);
+    void displayBalance(int incomeSummary, int expenseSummary);
 
 public:
     OperationPanel(int loggedInUserId, string nameOfIncomesFile, string nameOfExpensesFile) : LOGGED_IN_USER_ID(loggedInUserId),
