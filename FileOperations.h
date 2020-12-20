@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <vector>
-#include "OperationData.h"
+#include "FinancialOperationData.h"
 #include "Markup.h"
 #include "File.h"
 #include "AuxiliaryMethods.h"
@@ -28,8 +28,8 @@ public:
             lastOperationId = 0;
         }
 
-    vector<OperationData> loadOperationsFromFile(int loggedInUserId);
-    void appendOperationToFile(OperationData newOperation);
+    vector<FinancialOperationData> loadOperationsFromFile(int loggedInUserId);
+    void appendOperationToFile(FinancialOperationData newOperation);
 
     int getLastOperationId();
 };

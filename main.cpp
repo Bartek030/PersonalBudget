@@ -8,7 +8,7 @@ int main() {
     char userChoice;
 
     while (true) {
-        if (userPersonalBudget.isUserLoggedIn() == false) {
+        if (!userPersonalBudget.isUserLoggedIn()) {
             userChoice = userPersonalBudget.chooseOptionFromUserMenu();
             switch (userChoice) {
             case '1':

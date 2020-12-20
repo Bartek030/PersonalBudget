@@ -4,9 +4,9 @@ int FileOperations::getLastOperationId() {
     return lastOperationId;
 }
 
-vector<OperationData> FileOperations::loadOperationsFromFile(int loggedInUserId) {
-    vector<OperationData> operations;
-    OperationData operation;
+vector<FinancialOperationData> FileOperations::loadOperationsFromFile(int loggedInUserId) {
+    vector<FinancialOperationData> operations;
+    FinancialOperationData operation;
     CMarkup xmlFile;
 
     bool fileExists = xmlFile.Load(getFileName());
@@ -37,7 +37,7 @@ vector<OperationData> FileOperations::loadOperationsFromFile(int loggedInUserId)
     return operations;
 }
 
-void FileOperations::appendOperationToFile(OperationData newOperation) {
+void FileOperations::appendOperationToFile(FinancialOperationData newOperation) {
     CMarkup xmlFile;
 
     bool fileExists = xmlFile.Load(getFileName());
